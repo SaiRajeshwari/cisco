@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+    blueocean:
+        container_name: MyJenkins2
+        ports:
+            - '8080:8080'
+        volumes:
+            - '/Users/rajee/Desktop/ocean_data:/var/jenkins_home'
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '$HOME:/home'
+        image: jenkinsci/blueocean
