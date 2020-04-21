@@ -4,8 +4,32 @@ services:
         container_name: MyJenkins2
         ports:
             - '8080:8080'
+        user: root
         volumes:
             - '/Users/rajee/Desktop/ocean_data:/var/jenkins_home'
             - '/var/run/docker.sock:/var/run/docker.sock'
             - '$HOME:/home'
         image: jenkinsci/blueocean
+        depends_on:
+            - elasticsearch
+
+    elasticsearch:
+        container_name: ElasticSearch1
+        ports:
+            - '9200:9200'
+            - '9300:9300'
+        volumes:
+            - '/Users/rajee/Desktop/elsearch_data:/usr/share/elasticsearch/data/'
+        environment:
+            - cluster.routing.allocation.disk.watermark.low=1b
+            - cluster.routing.allocation.disk.watermark.high=1b
+            - cluster.routing.allocation.disk.watermark.flood_stage=1b
+        image: elasticsearch:6.8.8
+
+    kibana:
+        container_name: Kibana1
+        ports:
+            - '5601:5601'
+        image: kibana:6.8.8
+        depends_on:
+            - elasticsearch
