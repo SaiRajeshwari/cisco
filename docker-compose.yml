@@ -32,4 +32,17 @@ services:
             - '5601:5601'
         image: kibana:6.8.8
         depends_on:
+            - blueocean
+            - elasticsearch
+
+
+    helloworld:
+        build: ./helloworld_project
+        container_name: HelloWorldApp
+        ports:
+            - '8000:8000'
+        volumes:
+            - './helloworld_project/:/helloworld_project/'
+        command: python manage.py runserver 0.0.0.0:8000
+        depends_on:
             - elasticsearch
