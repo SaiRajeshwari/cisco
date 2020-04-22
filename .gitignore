@@ -1,5 +1,6 @@
 *.pyc
 *.iml
+helloworld_project/.idea/workspace.xml
 
 # User-specific stuff
 .idea/**/workspace.xml
