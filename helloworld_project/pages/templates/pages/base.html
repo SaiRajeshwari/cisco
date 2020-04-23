@@ -1,13 +1,71 @@
+<!doctype html>
 <html>
   <head>
     <title>Hello World</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   </head>
   <body>
-    <h1>Jenkins Build Logs</h1>
-    <p>
-      {% for item in jenkins_data %}
-        {{ item }} <br><br>
-      {% endfor %}
-    </p>
+
+    {% block content %}
+      <div style="width: 100%">
+        <div>
+          <canvas id="pie-chart-hf"></canvas>
+        </div>
+        <div style="height: 150px"></div>
+        <div>
+          <canvas id="pie-chart-dummy"></canvas>
+        </div>
+      </div>
+
+      <script>
+
+        window.onload = function() {
+          var ctx = document.getElementById("pie-chart-hf").getContext('2d');
+
+          var firstChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: {{ labels|safe }},
+              datasets: [{
+                backgroundColor: [
+                  "#CC0000",
+                  "#F1BE48",
+                ],
+                data: {{ data_helloflask|safe }}
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+
+            }
+          });
+
+          var ctx2 = document.getElementById("pie-chart-dummy").getContext('2d');
+
+          var secondChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+              labels: {{ labels|safe }},
+              datasets: [{
+                backgroundColor: [
+                  "#CC0000",
+                  "#F1BE48",
+                ],
+                data: {{ data_dummy|safe }}
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+
+            }
+          });
+        }
+      </script>
+
+    {% endblock %}
+
   </body>
 </html>
+
