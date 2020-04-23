@@ -18,8 +18,8 @@ services:
         ports:
             - '9200:9200'
             - '9300:9300'
-        volumes:
-            - '/Users/rajee/Desktop/elsearch_data:/usr/share/elasticsearch/data/'
+        # volumes:
+            # - '/Users/rajee/Desktop/elsearch_data:/usr/share/elasticsearch/data/'
         environment:
             - cluster.routing.allocation.disk.watermark.low=1b
             - cluster.routing.allocation.disk.watermark.high=1b
