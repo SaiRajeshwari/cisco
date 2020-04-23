@@ -18,12 +18,12 @@ services:
         ports:
             - '9200:9200'
             - '9300:9300'
-        # volumes:
-            # - '/Users/rajee/Desktop/elsearch_data:/usr/share/elasticsearch/data/'
+        volumes:
+            - elasticsearch:/usr/share/elasticsearch/data
         environment:
-            - cluster.routing.allocation.disk.watermark.low=1b
-            - cluster.routing.allocation.disk.watermark.high=1b
-            - cluster.routing.allocation.disk.watermark.flood_stage=1b
+            - cluster.routing.allocation.disk.watermark.low=10b
+            - cluster.routing.allocation.disk.watermark.high=10b
+            - cluster.routing.allocation.disk.watermark.flood_stage=10b
         image: elasticsearch:6.8.8
 
     kibana:
@@ -46,3 +46,6 @@ services:
         command: python manage.py runserver 0.0.0.0:8000
         depends_on:
             - elasticsearch
+
+volumes:
+    elasticsearch:

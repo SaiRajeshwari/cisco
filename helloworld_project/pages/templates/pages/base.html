@@ -4,6 +4,10 @@
   </head>
   <body>
     <h1>Jenkins Build Logs</h1>
-    {{ jenkins_data }}
+    <p>
+      {% for item in jenkins_data %}
+        {{ item }} <br><br>
+      {% endfor %}
+    </p>
   </body>
 </html>
