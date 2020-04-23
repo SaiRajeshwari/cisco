@@ -13,7 +13,7 @@ def homePageView(request):
     response = s.execute()
     res = []
     for hit in response:
-        res.append(str(hit.meta.id))
+        # res.append(str(hit.meta.id))
         res.append(str(hit.data.id))
         res.append(str(hit.data.projectName))
         res.append(str(hit.data.result))

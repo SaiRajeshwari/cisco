@@ -21,9 +21,9 @@ services:
         volumes:
             - elasticsearch:/usr/share/elasticsearch/data
         environment:
-            - cluster.routing.allocation.disk.watermark.low=10b
-            - cluster.routing.allocation.disk.watermark.high=10b
-            - cluster.routing.allocation.disk.watermark.flood_stage=10b
+            - cluster.routing.allocation.disk.watermark.low=500mb
+            - cluster.routing.allocation.disk.watermark.high=300mb
+            - cluster.routing.allocation.disk.watermark.flood_stage=200mb
         image: elasticsearch:6.8.8
 
     kibana:
